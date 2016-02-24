@@ -218,22 +218,22 @@ public class ElevensBoard {
 		}
 		
 		else if(choices == 3){
-			if(cards[0].rank().equals("jack")  && cards[1].rank().equals("queen") && cards[2].rank().equals("king")){
+			if(cards[selectedCards.get(0)].rank().equals("jack")  && cards[selectedCards.get(1)].rank().equals("queen") && cards[selectedCards.get(2)].rank().equals("king")){
 				return true;
 			}
-			if(cards[0].rank().equals("jack")  && cards[1].rank().equals("king") && cards[2].rank().equals("queen")){
+			if(cards[selectedCards.get(0)].rank().equals("jack")  && cards[selectedCards.get(1)].rank().equals("king") && cards[selectedCards.get(2)].rank().equals("queen")){
 				return true;
 			}
-			if(cards[0].rank().equals("queen")  && cards[1].rank().equals("jack") && cards[2].rank().equals("king")){
+			if(cards[selectedCards.get(0)].rank().equals("queen")  && cards[selectedCards.get(1)].rank().equals("jack") && cards[selectedCards.get(2)].rank().equals("king")){
 				return true;
 			}
-			if(cards[0].rank().equals("queen")  && cards[1].rank().equals("king") && cards[2].rank().equals("jack")){
+			if(cards[selectedCards.get(0)].rank().equals("queen")  && cards[selectedCards.get(1)].rank().equals("king") && cards[selectedCards.get(2)].rank().equals("jack")){
 				return true;
 			}
-			if(cards[0].rank().equals("king")  && cards[1].rank().equals("jack") && cards[2].rank().equals("queen")){
+			if(cards[selectedCards.get(0)].rank().equals("king")  && cards[selectedCards.get(1)].rank().equals("jack") && cards[selectedCards.get(2)].rank().equals("queen")){
 				return true;
 			}
-			if(cards[0].rank().equals("king")  && cards[1].rank().equals("queen") && cards[2].rank().equals("jack")){
+			if(cards[selectedCards.get(0)].rank().equals("king")  && cards[selectedCards.get(1)].rank().equals("queen") && cards[selectedCards.get(2)].rank().equals("jack")){
 				return true;
 			}
 			return false;
