@@ -228,9 +228,9 @@ public class ElevensBoard {
 			if (card != null) {
 				if (card.rank().equals("jack")) 
 					jack = true;
-				else if (card.rank().equals("queen")) 
+				if (card.rank().equals("queen")) 
 					queen = true;
-				else if (card.rank().equals("king")) 
+				if (card.rank().equals("king")) 
 					king = true;
 			}
 		}
@@ -239,24 +239,20 @@ public class ElevensBoard {
 			return true;
 		
 		//Checks for pair sums		
-		for (Card card : cards) {
+		for (Card card : cards) { // goes through first card of each
 			int value1 = 0;
 			if (card != null) {
-				value1 = card.pointValue();
+				value1 = card.pointValue();  // goes through second card of each
 				for (Card card1 : cards) {
 					if (card1 != null) {
-						if (card1.pointValue() + value1 == 11) {
+						if (card1.pointValue() + value1 == 11) { //adds the two cards
 							return true;
 						}
 					}
 				}
 			}
 		}
-		
-		if (isEmpty()) {
-			return true;
-		}
-		
+				
 		return false;
 	}
 
