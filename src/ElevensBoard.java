@@ -206,6 +206,76 @@ public class ElevensBoard {
 	 *         otherwise.
 	 */
 	public boolean isLegal(List<Integer> selectedCards) {
+		if(containsPairSum11(selectedCards)|| containsJQK(selectedCards))
+			return true;
+		return false;
+	}
+
+	/**
+	 * Determine if there are any legal plays left on the board. In Elevens,
+	 * there is a legal play if the board contains (1) a pair of non-face cards
+	 * whose values add to 11, or (2) a group of three cards consisting of a
+	 * jack, a queen, and a king in some order.
+	 * 
+	 * @return true if there is a legal play left on the board; false otherwise.
+	 */
+	public boolean anotherPlayIsPossible() {
+		boolean jack = false;
+		boolean queen = false;
+		boolean king = false;
+		//Checks if any JQK combos
+		for (Card card: cards) {
+			if (card != null) {
+				if (card.rank().equals("jack")) 
+					jack = true;
+				else if (card.rank().equals("queen")) 
+					queen = true;
+				else if (card.rank().equals("king")) 
+					king = true;
+			}
+		}
+		
+		if (jack && queen && king) 
+			return true;
+		
+		//Checks for pair sums		
+		for (Card card : cards) {
+			int value1 = 0;
+			if (card != null) {
+				value1 = card.pointValue();
+				for (Card card1 : cards) {
+					if (card1 != null) {
+						if (card1.pointValue() + value1 == 11) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		
+		if (isEmpty()) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////
+	// //// DO NOT CHANGE ANY METHODS ABOVE THIS LINE.
+	// //////////////////////////////////////////////////////////////////////////////////////////////////
+	// /// ONLY ALTER THE METHODS BELOW THIS LINE.
+	// //////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Check for an 11-pair in the selected cards.
+	 * 
+	 * @param selectedCards
+	 *            selects a subset of this board. It is list of indexes into
+	 *            this board that are searched to find an 11-pair.
+	 * @return true if the board entries in selectedCards contain an 11-pair;
+	 *         false otherwise.
+	 */
+	private boolean containsPairSum11(List<Integer> selectedCards) {
 		int sum = 0;
 		int choices = 0;
 		for (int k = 0; k < selectedCards.size(); k++) {
@@ -217,7 +287,24 @@ public class ElevensBoard {
 			return true;
 		}
 		
-		else if(choices == 3){
+		return false;
+	}
+
+	/**
+	 * Check for a JQK in the selected cards.
+	 * 
+	 * @param selectedCards
+	 *            selects a subset of this board. It is list of indexes into
+	 *            this board that are searched to find a JQK group.
+	 * @return true if the board entries in selectedCards include a jack, a
+	 *         queen, and a king; false otherwise.
+	 */
+	private boolean containsJQK(List<Integer> selectedCards) {
+		int choices = 0;
+		for (int k = 0; k < selectedCards.size(); k++) {
+			choices ++;
+		}
+		if(choices == 3){
 			if(cards[selectedCards.get(0)].rank().equals("jack")  && cards[selectedCards.get(1)].rank().equals("queen") && cards[selectedCards.get(2)].rank().equals("king")){
 				return true;
 			}
@@ -238,57 +325,8 @@ public class ElevensBoard {
 			}
 			return false;
 		}
-		
-		
 		return false;
 		
-	}
-
-	/**
-	 * Determine if there are any legal plays left on the board. In Elevens,
-	 * there is a legal play if the board contains (1) a pair of non-face cards
-	 * whose values add to 11, or (2) a group of three cards consisting of a
-	 * jack, a queen, and a king in some order.
-	 * 
-	 * @return true if there is a legal play left on the board; false otherwise.
-	 */
-	public boolean anotherPlayIsPossible() {
-		
-		return true;
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////
-	// //// DO NOT CHANGE ANY METHODS ABOVE THIS LINE.
-	// //////////////////////////////////////////////////////////////////////////////////////////////////
-	// /// ONLY ALTER THE METHODS BELOW THIS LINE.
-	// //////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	 * Check for an 11-pair in the selected cards.
-	 * 
-	 * @param selectedCards
-	 *            selects a subset of this board. It is list of indexes into
-	 *            this board that are searched to find an 11-pair.
-	 * @return true if the board entries in selectedCards contain an 11-pair;
-	 *         false otherwise.
-	 */
-	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN EXPERIMENT03 *** */
-		return true;
-	}
-
-	/**
-	 * Check for a JQK in the selected cards.
-	 * 
-	 * @param selectedCards
-	 *            selects a subset of this board. It is list of indexes into
-	 *            this board that are searched to find a JQK group.
-	 * @return true if the board entries in selectedCards include a jack, a
-	 *         queen, and a king; false otherwise.
-	 */
-	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN EXPERIMENT03 *** */
-		return true;
 	}
 
 }
